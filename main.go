@@ -6,15 +6,15 @@
 // and the next request that arrives starts them again, waits until the upstream
 // answers, and is then served as if nothing happened.
 //
-// It is generic on purpose: nothing in it knows about any particular app. One idlegate
-// (a few MB of RSS) can guard every container on a host; each route is
+// It is generic on purpose: nothing in it knows about any particular app. One
+// idlegate (a few MB of RSS) can guard every container on a host; each route is
 //
 //	LISTEN  UPSTREAM  CONTAINER[,CONTAINER...]  [key=value ...]
 //
 // e.g.
 //
-//	ROUTES=":8080 http://mediavault:8080 facerec,mediavault idle=30m
-//	        :5432 tcp://postgres:5432    postgres            idle=2h"
+//	ROUTES=":8080 http://app:8080       app-worker,app idle=30m
+//	        :5432 tcp://postgres:5432 postgres       idle=2h"
 //
 // Routes are separated by newlines or ';'. Containers start in the order given
 // and stop in reverse, so list dependencies first. http:// upstreams are proxied

@@ -24,6 +24,16 @@ container on a host. It is standard-library Go only, with no dependencies.
 
 ## Install
 
+Every push to `main` builds the image and pushes it to the Gitea registry
+(see [`.gitea/workflows/build.yml`](.gitea/workflows/build.yml)), tagged
+`latest` and with the first 8 characters of the commit:
+
+```yaml
+image: gitea.internal:30008/nine9/idlegate:latest
+```
+
+To build it yourself instead:
+
 ```sh
 docker build -t idlegate https://github.com/nine9123/idlegate.git
 # or, for a bare binary:
